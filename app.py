@@ -1,5 +1,9 @@
 from flask import Flask
 from database import db
+from routes.products import products_bp
+from routes.inventory import inventory_bp
+
+
 
 def create_app():
     app = Flask(__name__)
@@ -16,6 +20,9 @@ def create_app():
 
 
 app = create_app()
+app.register_blueprint(products_bp)
+app.register_blueprint(inventory_bp)
+
 
 if __name__ == "__main__":
     app.run(debug=True)
