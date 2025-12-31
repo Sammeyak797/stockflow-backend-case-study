@@ -22,3 +22,11 @@ class Inventory(db.Model):
     product_id = db.Column(db.Integer, db.ForeignKey('product.id'))
     warehouse_id = db.Column(db.Integer, db.ForeignKey('warehouse.id'))
     quantity = db.Column(db.Integer, nullable=False)
+
+class InventoryMovement(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    product_id = db.Column(db.Integer, db.ForeignKey('product.id'), nullable=False)
+    warehouse_id = db.Column(db.Integer, db.ForeignKey('warehouse.id'), nullable=False)
+    quantity = db.Column(db.Integer, nullable=False)
+    movement_type = db.Column(db.String(10), nullable=False)  # IN or OUT
+    created_at = db.Column(db.DateTime, default=datetime.utcnow)
